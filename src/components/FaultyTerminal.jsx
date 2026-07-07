@@ -186,7 +186,7 @@ void main() {
     if(uCurvature != 0.0){
       uv = barrel(uv);
     }
-    
+
     vec2 p = uv * uScale;
     vec3 col = getColor(p);
 
@@ -197,7 +197,7 @@ void main() {
     }
 
     col *= uTint;
-    col *= uBrightness;
+    col *= uBrightness * 0.5;
 
     if(uDither > 0.0){
       float rnd = hash21(gl_FragCoord.xy);

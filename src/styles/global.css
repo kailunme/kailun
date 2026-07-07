@@ -90,6 +90,16 @@ img {
   color: var(--green);
   text-shadow: 0 0 8px rgba(167, 239, 158, 0.8), 0 0 20px rgba(167, 239, 158, 0.5);
 }
+
+.hero-cursor-block {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.85em;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(167, 239, 158, 0.8), 0 0 20px rgba(167, 239, 158, 0.5);
+  vertical-align: text-bottom;
+  margin-left: 0.1em;
+}
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }

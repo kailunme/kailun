@@ -1,0 +1,168 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "personal-site",
+    description: "用 Astro 构建的个人网站，纯静态生成，部署在 Vercel。WebGL 背景动效。",
+    tags: ["Astro", "TypeScript", "WebGL"],
+    github: "https://github.com",
+    demo: "https://example.com",
+    featured: true,
+  },
+  {
+    title: "task-cli",
+    description: "命令行任务管理工具，支持标签、优先级和本地 SQLite 存储。",
+    tags: ["Node.js", "SQLite", "Commander"],
+    github: "https://github.com",
+  },
+  {
+    title: "api-boilerplate",
+    description: "基于 Fastify + Prisma 的 REST API 脚手架，内置认证和速率限制。",
+    tags: ["Fastify", "Prisma", "PostgreSQL", "Docker"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    title: "react-component-kit",
+    description: "无样式、可访问的 React 组件集合，专注键盘导航和 ARIA 规范。",
+    tags: ["React", "TypeScript", "Storybook"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    title: "log-analyzer",
+    description: "解析和可视化 Nginx/Apache 访问日志，生成流量统计报告。",
+    tags: ["Python", "pandas", "matplotlib"],
+    github: "https://github.com",
+  },
+  {
+    title: "md-blog-engine",
+    description: "从本地 Markdown 文件生成静态博客，支持标签、搜索和 RSS。",
+    tags: ["Go", "HTML", "CSS"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+];
+---
+
+<Layout title="kai — ~/projects">
+  <Nav />
+
+  <main class="main">
+    <div class="container">
+      <div class="page-header">
+        <div class="breadcrumb">
+          <a href="/" class="bc-link">~</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">projects</span>
+        </div>
+        <div class="prompt-line">
+          <span class="prompt-char">$</span>
+          <span class="prompt-cmd">ls -la ./projects</span>
+          <span class="cursor"></span>
+        </div>
+        <p class="page-desc">
+          <span class="comment">// </span>
+          {projects.length} repositories — personal projects, tools, experiments
+        </p>
+      </div>
+
+      <div class="grid">
+        {projects.map((p, i) => <ProjectCard {...p} index={i} />)}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .main {
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .bc-link {
+    color: var(--green);
+    transition: opacity 0.15s;
+  }
+  .bc-link:hover { opacity: 0.7; }
+  .bc-sep { color: var(--border-bright); }
+  .bc-current { color: var(--text-muted); }
+
+  .prompt-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .prompt-char { color: var(--green); }
+  .prompt-cmd { color: var(--text); }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 1.1em;
+    background: var(--green);
+    opacity: 0.8;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0; }
+  }
+
+  .page-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    font-family: var(--font-mono);
+  }
+
+  .comment { color: var(--border-bright); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .grid > :global(.card) {
+    border: none;
+    border-radius: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+</style>

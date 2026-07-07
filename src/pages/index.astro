@@ -1,0 +1,387 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import HeroBackground from "../components/HeroBackground.tsx";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "personal-site",
+    description: "用 Astro 构建的个人网站，纯静态生成，部署在 Vercel。",
+    tags: ["Astro", "TypeScript", "CSS"],
+    github: "https://github.com",
+    demo: "https://example.com",
+    featured: true,
+  },
+  {
+    title: "task-cli",
+    description: "命令行任务管理工具，支持标签、优先级和本地 SQLite 存储。",
+    tags: ["Node.js", "SQLite", "Commander"],
+    github: "https://github.com",
+  },
+  {
+    title: "api-boilerplate",
+    description: "基于 Fastify + Prisma 的 REST API 脚手架，内置认证和速率限制。",
+    tags: ["Fastify", "Prisma", "PostgreSQL"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+];
+---
+
+<Layout title="kai — ~/index">
+  <Nav transparent />
+
+  <!-- 全屏 Hero -->
+  <section class="hero">
+    <HeroBackground client:only="react" />
+    <div class="hero-content">
+      <div class="hero-meta">
+        <span class="meta-line"><span class="dim">user</span> <span class="green">kai</span></span>
+        <span class="meta-sep">//</span>
+        <span class="meta-line"><span class="dim">role</span> <span class="green">fullstack dev</span></span>
+        <span class="meta-sep">//</span>
+        <span class="meta-line"><span class="dim">status</span> <span class="blink-green">available</span></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line">building things</span>
+        <span class="title-line dim-line">that work.</span>
+      </h1>
+      <p class="hero-sub">全栈开发者 · 开源贡献者 · 以代码解决真实问题</p>
+      <div class="hero-cta">
+        <a href="#work" class="cta-primary">
+          <span class="cta-arrow">›</span> ls ./projects
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="cta-ghost">
+          <span class="cta-arrow">›</span> open github
+        </a>
+      </div>
+    </div>
+    <a href="#work" class="scroll-indicator" aria-label="向下滚动">
+      <span class="scroll-line"></span>
+    </a>
+  </section>
+
+  <!-- Projects -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-prefix">$</span>
+        <span class="label-cmd">ls -la ./projects</span>
+        <span class="label-count">{projects.length} items</span>
+      </div>
+      <div class="projects-grid">
+        {projects.map((p, i) => <ProjectCard {...p} index={i} />)}
+      </div>
+      <div class="section-footer">
+        <a href="/projects" class="more-link">
+          <span>cat ./projects --all</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about-section">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-prefix">$</span>
+        <span class="label-cmd">cat ./about.md</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-para">
+            <span class="comment">// 你好</span><br />
+            专注于构建<span class="hl">高性能 Web 应用</span>，从数据库设计到像素级 UI 都能覆盖。
+            喜欢用最少的抽象解决最复杂的问题。
+          </p>
+          <p class="about-para">
+            <span class="comment">// 工作方式</span><br />
+            偏好<span class="hl">小而精</span>的代码库，反对过度工程。每行代码都有存在的理由。
+          </p>
+        </div>
+        <div class="stack-list">
+          <div class="stack-row">
+            <span class="stack-key">lang</span>
+            <span class="stack-val">TypeScript · Python · Go</span>
+          </div>
+          <div class="stack-row">
+            <span class="stack-key">front</span>
+            <span class="stack-val">React · Astro · CSS</span>
+          </div>
+          <div class="stack-row">
+            <span class="stack-key">back</span>
+            <span class="stack-val">Node.js · Fastify · Prisma</span>
+          </div>
+          <div class="stack-row">
+            <span class="stack-key">infra</span>
+            <span class="stack-val">PostgreSQL · Docker · Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-line { display: flex; gap: 0.4rem; }
+  .meta-sep { color: var(--border-bright); }
+  .dim { color: var(--text-muted); }
+  .green { color: var(--green); }
+
+  .blink-green {
+    color: var(--green);
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    margin-bottom: 1.5rem;
+  }
+
+  .title-line {
+    color: var(--green);
+    text-shadow: 0 0 60px rgba(167, 239, 158, 0.25);
+  }
+
+  .dim-line {
+    color: rgba(167, 239, 158, 0.3);
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+    font-family: var(--font-sans);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary, .cta-ghost {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+
+  .cta-primary {
+    background: rgba(167, 239, 158, 0.1);
+    border: 1px solid var(--border-bright);
+    color: var(--green);
+  }
+
+  .cta-primary:hover {
+    background: rgba(167, 239, 158, 0.18);
+    box-shadow: 0 0 20px rgba(167, 239, 158, 0.15);
+  }
+
+  .cta-ghost {
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .cta-ghost:hover {
+    border-color: var(--border-bright);
+    color: var(--green);
+  }
+
+  .cta-arrow {
+    color: var(--text-muted);
+    margin-right: 0.35rem;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scroll-line {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--border-bright), transparent);
+    animation: grow 1.8s ease-in-out infinite;
+    transform-origin: top;
+  }
+
+  @keyframes grow {
+    0% { transform: scaleY(0); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-section {
+    background: var(--bg-surface);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 2.5rem;
+    color: var(--text-muted);
+  }
+
+  .label-prefix { color: var(--green); }
+  .label-cmd { color: var(--text); }
+  .label-count {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 0.68rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .projects-grid > :global(.card) {
+    border: none;
+    border-radius: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: color 0.15s;
+  }
+
+  .more-link:hover { color: var(--green); }
+  .more-link .arrow { transition: transform 0.15s; }
+  .more-link:hover .arrow { transform: translateX(4px); }
+
+  /* ── About ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .about-para {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    margin-bottom: 1.5rem;
+  }
+
+  .comment { color: var(--border-bright); font-family: var(--font-mono); }
+  .hl { color: var(--green); }
+
+  .stack-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-self: start;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+    font-size: 0.78rem;
+    align-items: baseline;
+  }
+
+  .stack-key {
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  .stack-val {
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+</style>

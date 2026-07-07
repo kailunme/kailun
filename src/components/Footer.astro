@@ -1,0 +1,63 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-line">
+      <span class="dim">// </span>
+      <span class="muted">© {year} kai — built with</span>
+      <span class="green"> astro</span>
+    </span>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank" rel="noopener" class="footer-link">gh</a>
+      <span class="sep">/</span>
+      <a href="mailto:hi@kai.dev" class="footer-link">mail</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-line {
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .dim { color: var(--text-dim); }
+  .muted { color: var(--text-muted); }
+  .green { color: var(--green); }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .footer-link {
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover {
+    color: var(--green);
+  }
+
+  .sep {
+    color: var(--border-bright);
+  }
+</style>

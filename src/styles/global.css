@@ -15,8 +15,8 @@
   --green-dim: rgba(167, 239, 158, 0.55);
   --green-glow: rgba(167, 239, 158, 0.12);
   --text: #e8f5e8;
-  --text-muted: rgba(167, 239, 158, 0.45);
-  --text-dim: rgba(232, 245, 232, 0.35);
+  --text-muted: #4e714a;
+  --text-dim: #555c55;
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
   --font-sans: "Inter", system-ui, sans-serif;
   --radius: 4px;

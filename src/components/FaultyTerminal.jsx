@@ -313,11 +313,18 @@ export default function FaultyTerminal({
     function resize() {
       if (!ctn || !renderer) return;
       renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
-      program.uniforms.iResolution.value = new Color(
-        gl.canvas.width,
-        gl.canvas.height,
-        gl.canvas.width / gl.canvas.height
-      );
+      const w = gl.canvas.width;
+      const h = gl.canvas.height;
+      program.uniforms.iResolution.value = new Color(w, h, w / h);
+      // keep grid cells square regardless of viewport aspect ratio
+      const aspect = w / h;
+      if (aspect >= 1) {
+        program.uniforms.uGridMul.value[0] = aspect;
+        program.uniforms.uGridMul.value[1] = 1;
+      } else {
+        program.uniforms.uGridMul.value[0] = 1;
+        program.uniforms.uGridMul.value[1] = 1 / aspect;
+      }
     }
 
     const resizeObserver = new ResizeObserver(() => resize());

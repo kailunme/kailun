@@ -20,7 +20,7 @@ export default function HeroTitle() {
     if (!el) return;
     gsap.killTweensOf(el);
     gsap.set(el, { opacity: 1 });
-    gsap.to(el, { opacity: 0, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
+    gsap.to(el, { opacity: 0, duration: 0.5, repeat: -1, yoyo: true, ease: 'power2.inOut' });
   }, [phase]);
 
   // typing state machine
@@ -47,13 +47,13 @@ export default function HeroTitle() {
       <span className="title-line">
         {line1}
         {(phase === 'line1' || phase === 'pause') && (
-          <span ref={cursor1Ref} className="hero-cursor hero-cursor-block"> </span>
+          <span ref={cursor1Ref} className="hero-cursor">▌</span>
         )}
       </span>
       <span className="title-line dim-line">
         {line2}
         {(phase === 'line2' || phase === 'done') && (
-          <span ref={cursor2Ref} className="hero-cursor hero-cursor-block"> </span>
+          <span ref={cursor2Ref} className="hero-cursor">▌</span>
         )}
       </span>
     </h1>

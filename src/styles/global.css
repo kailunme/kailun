@@ -20,6 +20,10 @@
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
   --font-sans: "Inter", system-ui, sans-serif;
   --radius: 4px;
+
+  /* override shadcn defaults to force dark theme */
+  --background: #060a06;
+  --foreground: #e8f5e8;
 }
 
 *, *::before, *::after {
@@ -61,3 +65,17 @@ img {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
+
+/* override shadcn @layer base which sets white background and Geist font */
+@layer base {
+  html {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+    background: #060a06 !important;
+    color: #e8f5e8;
+  }
+  body {
+    background: #060a06 !important;
+    color: #e8f5e8;
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  }
+}

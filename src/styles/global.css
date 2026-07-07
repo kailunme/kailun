@@ -93,11 +93,11 @@ img {
 
 .hero-cursor-block {
   display: inline-block;
-  width: 0.55em;
-  height: 0.85em;
+  width: 0.5em;
+  height: 0.82em;
   background: var(--green);
   box-shadow: 0 0 8px rgba(167, 239, 158, 0.8), 0 0 20px rgba(167, 239, 158, 0.5);
-  vertical-align: text-bottom;
+  vertical-align: -0.12em;
   margin-left: 0.1em;
 }
 ::-webkit-scrollbar { width: 4px; }

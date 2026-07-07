@@ -20,7 +20,7 @@ export default function HeroTitle() {
     if (!el) return;
     gsap.killTweensOf(el);
     gsap.set(el, { opacity: 1 });
-    gsap.to(el, { opacity: 0, duration: 0.5, repeat: -1, yoyo: true, ease: 'power2.inOut' });
+    gsap.to(el, { opacity: 0, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
   }, [phase]);
 
   // typing state machine

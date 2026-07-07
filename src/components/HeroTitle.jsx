@@ -45,20 +45,16 @@ export default function HeroTitle() {
   return (
     <h1 className="hero-title">
       <span className="title-line">
-        <span className="title-text-wrap">
-          {line1}
-          {(phase === 'line1' || phase === 'pause') && (
-            <span ref={cursor1Ref} className="hero-cursor">_</span>
-          )}
-        </span>
+        {line1}
+        {(phase === 'line1' || phase === 'pause') && (
+          <span ref={cursor1Ref} className="hero-cursor">_</span>
+        )}
       </span>
       <span className="title-line dim-line">
-        <span className="title-text-wrap">
-          {line2}
-          {(phase === 'line2' || phase === 'done') && (
-            <span ref={cursor2Ref} className="hero-cursor">_</span>
-          )}
-        </span>
+        {line2}
+        {(phase === 'line2' || phase === 'done') && (
+          <span ref={cursor2Ref} className="hero-cursor">_</span>
+        )}
       </span>
     </h1>
   );

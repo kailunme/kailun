@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import HeroBackground from "../components/HeroBackground.tsx";
+import HeroTitle from "../components/HeroTitle.jsx";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const projects = [
@@ -44,10 +45,7 @@ const projects = [
         <span class="meta-sep">//</span>
         <span class="meta-line"><span class="dim">status</span> <span class="blink-green">available</span></span>
       </div>
-      <h1 class="hero-title">
-        <span class="title-line">building things</span>
-        <span class="title-line dim-line">that work.</span>
-      </h1>
+      <HeroTitle client:only="react" />
       <p class="hero-sub">全栈开发者 · 开源贡献者 · 以代码解决真实问题</p>
       <div class="hero-cta">
         <a href="#work" class="cta-primary">
@@ -177,25 +175,6 @@ const projects = [
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-  }
-
-  .hero-title {
-    display: flex;
-    flex-direction: column;
-    font-size: clamp(3.5rem, 9vw, 7rem);
-    font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: -3px;
-    margin-bottom: 1.5rem;
-  }
-
-  .title-line {
-    color: var(--green);
-    text-shadow: 0 0 60px rgba(167, 239, 158, 0.25);
-  }
-
-  .dim-line {
-    color: #4e714a;
   }
 
   .hero-sub {

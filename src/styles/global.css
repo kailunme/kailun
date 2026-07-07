@@ -61,7 +61,35 @@ img {
   color: var(--green);
 }
 
-/* scrollbar */
+/* ── Hero Title (used by HeroTitle React component) ── */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -3px;
+  margin-bottom: 1.5rem;
+}
+
+.title-line {
+  color: var(--green);
+  text-shadow: 0 0 60px rgba(167, 239, 158, 0.25);
+}
+
+.dim-line {
+  color: var(--green);
+  text-shadow:
+    0 0 8px rgba(167, 239, 158, 0.8),
+    0 0 20px rgba(167, 239, 158, 0.5),
+    0 0 50px rgba(167, 239, 158, 0.2),
+    0 0 100px rgba(167, 239, 158, 0.15);
+}
+
+.hero-cursor {
+  color: var(--green);
+  text-shadow: 0 0 8px rgba(167, 239, 158, 0.8), 0 0 20px rgba(167, 239, 158, 0.5);
+}
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }

@@ -19,8 +19,13 @@ export default function HeroTitle() {
     const el = phase === 'line2' || phase === 'done' ? cursor2Ref.current : cursor1Ref.current;
     if (!el) return;
     gsap.killTweensOf(el);
-    gsap.set(el, { opacity: 1 });
-    gsap.to(el, { opacity: 0, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
+    if (phase === 'done') {
+      // fade out and hide after typing finishes
+      gsap.to(el, { opacity: 0, duration: 0.4, delay: 0.3, onComplete: () => { el.style.display = 'none'; } });
+    } else {
+      gsap.set(el, { opacity: 1 });
+      gsap.to(el, { opacity: 0, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
+    }
   }, [phase]);
 
   // typing state machine

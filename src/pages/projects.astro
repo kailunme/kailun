@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import ProjectCard from "../components/ProjectCard.jsx";
 
 const projects = [
   {
@@ -72,7 +72,7 @@ const projects = [
       </div>
 
       <div class="grid">
-        {projects.map((p, i) => <ProjectCard {...p} index={i} />)}
+        {projects.map((p, i) => <ProjectCard {...p} index={i} client:only="react" />)}
       </div>
     </div>
   </main>

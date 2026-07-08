@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useState, useEffect } from 'react';
 
 const LINE1 = 'building things';
 const LINE2 = 'that work.';
@@ -9,26 +8,8 @@ const LINE_PAUSE = 350;
 export default function HeroTitle() {
   const [line1, setLine1] = useState('');
   const [line2, setLine2] = useState('');
-  // phase: 'line1' | 'pause' | 'line2' | 'done'
   const [phase, setPhase] = useState('line1');
-  const cursor1Ref = useRef(null);
-  const cursor2Ref = useRef(null);
 
-  // start cursor blink animation on whichever cursor is active
-  useEffect(() => {
-    const el = phase === 'line2' || phase === 'done' ? cursor2Ref.current : cursor1Ref.current;
-    if (!el) return;
-    gsap.killTweensOf(el);
-    if (phase === 'done') {
-      // fade out and hide after typing finishes
-      gsap.to(el, { opacity: 0, duration: 0.4, delay: 0.3, onComplete: () => { el.style.display = 'none'; } });
-    } else {
-      gsap.set(el, { opacity: 1 });
-      gsap.to(el, { opacity: 0, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(1)' });
-    }
-  }, [phase]);
-
-  // typing state machine
   useEffect(() => {
     let t;
     if (phase === 'line1') {
@@ -49,18 +30,8 @@ export default function HeroTitle() {
 
   return (
     <h1 className="hero-title">
-      <span className="title-line">
-        {line1}
-        {(phase === 'line1' || phase === 'pause') && (
-          <span ref={cursor1Ref} className="hero-cursor">▌</span>
-        )}
-      </span>
-      <span className="title-line dim-line">
-        {line2}
-        {(phase === 'line2' || phase === 'done') && (
-          <span ref={cursor2Ref} className="hero-cursor">▌</span>
-        )}
-      </span>
+      <span className="title-line">{line1}</span>
+      <span className="title-line dim-line">{line2}</span>
     </h1>
   );
 }

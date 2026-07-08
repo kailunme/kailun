@@ -4,7 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import HeroBackground from "../components/HeroBackground.tsx";
 import HeroTitle from "../components/HeroTitle.jsx";
-import ProjectCard from "../components/ProjectCard.astro";
+import ProjectCard from "../components/ProjectCard.jsx";
 
 const projects = [
   {
@@ -70,7 +70,7 @@ const projects = [
         <span class="label-count">{projects.length} items</span>
       </div>
       <div class="projects-grid">
-        {projects.map((p, i) => <ProjectCard {...p} index={i} />)}
+        {projects.map((p, i) => <ProjectCard {...p} index={i} client:only="react" />)}
       </div>
       <div class="section-footer">
         <a href="/projects" class="more-link">
